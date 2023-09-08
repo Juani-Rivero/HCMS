@@ -1,6 +1,10 @@
 const http = require('http');
 const express = require('express');
 
+// Constants
+const PORT = 3000;
+const HOST = '0.0.0.0';
+
 // Rutes
 const createRouter = require('./routes/create');
 
@@ -11,7 +15,6 @@ app.use(express.json());
 app.use('/patient', createRouter);
 
 const server = http.createServer(app);
-const port = 3000;
-server.listen(port);
-
-console.debug('Server listening on port ' + port);
+server.listen(PORT, HOST, () => {
+    console.log(`Running on http://${HOST}:${PORT}/patient`);
+});
